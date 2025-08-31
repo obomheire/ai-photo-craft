@@ -355,7 +355,7 @@ export function EditorTopBar({ project }) {
     try {
       // Clear canvas and reset state
       canvasEditor.clear();
-      canvasEditor.backgroundColor = "#ffffff";
+      canvasEditor.backgroundColor = "hsl(var(--background))";
       canvasEditor.backgroundImage = null;
 
       // Load original image
@@ -420,7 +420,7 @@ export function EditorTopBar({ project }) {
               variant="ghost"
               size="sm"
               onClick={handleBackToDashboard}
-              className="text-white hover:text-gray-300"
+              className="text-foreground hover:text-muted-foreground"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               All Projects
@@ -499,24 +499,24 @@ export function EditorTopBar({ project }) {
 
               <DropdownMenuContent
                 align="end"
-                className="w-56 bg-slate-800 border-slate-700"
+                className="w-56 bg-background border-border"
               >
-                <div className="px-3 py-2 text-sm text-white/70">
+                <div className="px-3 py-2 text-sm text-muted-foreground">
                   Export Resolution: {project.width} × {project.height}px
                 </div>
 
-                <DropdownMenuSeparator className="bg-slate-700" />
+                <DropdownMenuSeparator className="bg-border" />
 
                 {EXPORT_FORMATS.map((config, index) => (
                   <DropdownMenuItem
                     key={index}
                     onClick={() => handleExport(config)}
-                    className="text-white hover:bg-slate-700 cursor-pointer flex items-center gap-2"
+                    className="text-foreground hover:bg-muted cursor-pointer flex items-center gap-2"
                   >
                     <FileImage className="h-4 w-4" />
                     <div className="flex-1">
                       <div className="font-medium">{config.label}</div>
-                      <div className="text-xs text-white/50">
+                      <div className="text-xs text-muted-foreground">
                         {config.format} • {Math.round(config.quality * 100)}%
                         quality
                       </div>
@@ -524,15 +524,15 @@ export function EditorTopBar({ project }) {
                   </DropdownMenuItem>
                 ))}
 
-                <DropdownMenuSeparator className="bg-slate-700" />
+                <DropdownMenuSeparator className="bg-border" />
 
                 {/* Export Limit Info for Free Users */}
                 {isFree && (
-                  <div className="px-3 py-2 text-xs text-white/50">
+                  <div className="px-3 py-2 text-xs text-muted-foreground">
                     Free Plan: {user?.exportsThisMonth || 0}/20 exports this
                     month
                     {(user?.exportsThisMonth || 0) >= 20 && (
-                      <div className="text-amber-400 mt-1">
+                      <div className="text-accent mt-1">
                         Upgrade to Pro for unlimited exports
                       </div>
                     )}
@@ -560,14 +560,14 @@ export function EditorTopBar({ project }) {
                   onClick={() => handleToolChange(tool.id)}
                   className={`gap-2 relative ${
                     isActive
-                      ? "bg-blue-600 text-white hover:bg-blue-700"
-                      : "text-white hover:text-gray-300 hover:bg-gray-100"
+                      ? "bg-primary text-primary-foreground hover:bg-primary/90"
+                      : "text-foreground hover:text-muted-foreground hover:bg-muted"
                   } ${!hasToolAccess ? "opacity-60" : ""}`}
                 >
                   <Icon className="h-4 w-4" />
                   {tool.label}
                   {tool.proOnly && !hasToolAccess && (
-                    <Lock className="h-3 w-3 text-amber-400" />
+                    <Lock className="h-3 w-3 text-accent" />
                   )}
                 </Button>
               );
@@ -581,7 +581,7 @@ export function EditorTopBar({ project }) {
               <Button
                 variant="ghost"
                 size="sm"
-                className={`text-white ${!canUndo ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-700"}`}
+                className={`text-foreground ${!canUndo ? "opacity-50 cursor-not-allowed" : "hover:bg-muted"}`}
                 onClick={handleUndo}
                 disabled={!canUndo || isUndoRedoOperation}
                 title={`Undo (${undoStack.length - 1} actions available)`}
@@ -591,7 +591,7 @@ export function EditorTopBar({ project }) {
               <Button
                 variant="ghost"
                 size="sm"
-                className={`text-white ${!canRedo ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-700"}`}
+                className={`text-foreground ${!canRedo ? "opacity-50 cursor-not-allowed" : "hover:bg-muted"}`}
                 onClick={handleRedo}
                 disabled={!canRedo || isUndoRedoOperation}
                 title={`Redo (${redoStack.length} actions available)`}
