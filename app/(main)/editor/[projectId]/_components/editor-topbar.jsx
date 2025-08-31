@@ -411,33 +411,69 @@ export function EditorTopBar({ project }) {
 
   return (
     <>
-      <div className="border-b px-6 py-3">
+      <div className="border-b border-border/50 bg-card/50 backdrop-blur-sm">
         {/* Header Row */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between p-4">
           {/* Left: Back button and project name */}
           <div className="flex items-center gap-4">
             <Button
               variant="ghost"
               size="sm"
               onClick={handleBackToDashboard}
-              className="text-white hover:text-gray-300"
+              className="text-foreground hover:text-foreground/80 hover:bg-primary/10 transition-colors"
             >
               <ArrowLeft className="h-4 w-4 mr-2" />
               All Projects
             </Button>
+            <div className="h-4 w-px bg-border/50" />
+            <h1 className="text-lg font-semibold text-foreground capitalize">
+              {project.title}
+            </h1>
           </div>
-
-          <h1 className="font-extrabold capitalize">{project.title}</h1>
 
           {/* Right: Actions */}
           <div className="flex items-center gap-3">
+            {/* Undo/Redo */}
+            <div className="flex items-center gap-1 mr-2">
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`h-8 w-8 rounded-full ${
+                  !canUndo
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-primary/10 text-foreground hover:text-foreground/80"
+                }`}
+                onClick={handleUndo}
+                disabled={!canUndo || isUndoRedoOperation}
+                title={`Undo (${undoStack.length - 1} actions available)`}
+              >
+                <RotateCcw className="h-4 w-4" />
+              </Button>
+              <Button
+                variant="ghost"
+                size="icon"
+                className={`h-8 w-8 rounded-full ${
+                  !canRedo
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:bg-primary/10 text-foreground hover:text-foreground/80"
+                }`}
+                onClick={handleRedo}
+                disabled={!canRedo || isUndoRedoOperation}
+                title={`Redo (${redoStack.length} actions available)`}
+              >
+                <RotateCw className="h-4 w-4" />
+              </Button>
+            </div>
+
+            <div className="h-4 w-px bg-border/50" />
+
             {/* Reset Button */}
             <Button
-              variant="outline"
+              variant="ghost"
               size="sm"
               onClick={handleResetToOriginal}
               disabled={isSaving || !project.originalImageUrl}
-              className="gap-2"
+              className="gap-2 hover:bg-primary/10 text-foreground hover:text-foreground/80"
             >
               {isSaving ? (
                 <>
@@ -454,11 +490,11 @@ export function EditorTopBar({ project }) {
 
             {/* Manual Save Button */}
             <Button
-              variant="primary"
+              variant="secondary"
               size="sm"
               onClick={handleManualSave}
               disabled={isSaving || !canvasEditor}
-              className="gap-2"
+              className="gap-2 bg-primary/10 hover:bg-primary/20 text-primary border-primary/20"
             >
               {isSaving ? (
                 <>
@@ -477,10 +513,10 @@ export function EditorTopBar({ project }) {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
-                  variant="glass"
+                  variant="default"
                   size="sm"
                   disabled={isExporting || !canvasEditor}
-                  className="gap-2"
+                  className="gap-2 bg-primary text-primary-foreground hover:bg-primary/90"
                 >
                   {isExporting ? (
                     <>
@@ -491,7 +527,7 @@ export function EditorTopBar({ project }) {
                     <>
                       <Download className="h-4 w-4" />
                       Export
-                      <ChevronDown className="h-4 w-4" />
+                      <ChevronDown className="h-4 w-4 opacity-50" />
                     </>
                   )}
                 </Button>
@@ -499,24 +535,24 @@ export function EditorTopBar({ project }) {
 
               <DropdownMenuContent
                 align="end"
-                className="w-56 bg-slate-800 border-slate-700"
+                className="w-56 bg-popover border-border"
               >
-                <div className="px-3 py-2 text-sm text-white/70">
+                <div className="px-3 py-2 text-sm text-muted-foreground">
                   Export Resolution: {project.width} × {project.height}px
                 </div>
 
-                <DropdownMenuSeparator className="bg-slate-700" />
+                <DropdownMenuSeparator />
 
                 {EXPORT_FORMATS.map((config, index) => (
                   <DropdownMenuItem
                     key={index}
                     onClick={() => handleExport(config)}
-                    className="text-white hover:bg-slate-700 cursor-pointer flex items-center gap-2"
+                    className="cursor-pointer flex items-center gap-2"
                   >
-                    <FileImage className="h-4 w-4" />
+                    <FileImage className="h-4 w-4 text-primary" />
                     <div className="flex-1">
                       <div className="font-medium">{config.label}</div>
-                      <div className="text-xs text-white/50">
+                      <div className="text-xs text-muted-foreground">
                         {config.format} • {Math.round(config.quality * 100)}%
                         quality
                       </div>
@@ -524,15 +560,17 @@ export function EditorTopBar({ project }) {
                   </DropdownMenuItem>
                 ))}
 
-                <DropdownMenuSeparator className="bg-slate-700" />
+                <DropdownMenuSeparator />
 
                 {/* Export Limit Info for Free Users */}
                 {isFree && (
-                  <div className="px-3 py-2 text-xs text-white/50">
-                    Free Plan: {user?.exportsThisMonth || 0}/20 exports this
-                    month
+                  <div className="px-3 py-2 text-xs">
+                    <div className="text-muted-foreground">
+                      Free Plan: {user?.exportsThisMonth || 0}/20 exports this
+                      month
+                    </div>
                     {(user?.exportsThisMonth || 0) >= 20 && (
-                      <div className="text-amber-400 mt-1">
+                      <div className="text-primary mt-1 font-medium">
                         Upgrade to Pro for unlimited exports
                       </div>
                     )}
@@ -544,9 +582,8 @@ export function EditorTopBar({ project }) {
         </div>
 
         {/* Tools Row */}
-        <div className="flex items-center justify-between">
-          {/* Tools */}
-          <div className="flex items-center gap-2">
+        <div className="px-4 pb-4">
+          <div className="flex items-center gap-2 bg-muted/50 p-1 rounded-lg">
             {TOOLS.map((tool) => {
               const Icon = tool.icon;
               const isActive = activeTool === tool.id;
@@ -558,47 +595,20 @@ export function EditorTopBar({ project }) {
                   variant={isActive ? "default" : "ghost"}
                   size="sm"
                   onClick={() => handleToolChange(tool.id)}
-                  className={`gap-2 relative ${
+                  className={`gap-2 relative rounded-md transition-all duration-200 ${
                     isActive
-                      ? "bg-blue-600 text-white hover:bg-blue-700"
-                      : "text-white hover:text-gray-300 hover:bg-gray-100"
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "text-foreground hover:text-foreground/80 hover:bg-primary/10"
                   } ${!hasToolAccess ? "opacity-60" : ""}`}
                 >
                   <Icon className="h-4 w-4" />
                   {tool.label}
                   {tool.proOnly && !hasToolAccess && (
-                    <Lock className="h-3 w-3 text-amber-400" />
+                    <Lock className="h-3 w-3 text-primary animate-pulse" />
                   )}
                 </Button>
               );
             })}
-          </div>
-
-          {/* Right side controls */}
-          <div className="flex items-center gap-4">
-            {/* Undo/Redo */}
-            <div className="flex items-center gap-1">
-              <Button
-                variant="ghost"
-                size="sm"
-                className={`text-white ${!canUndo ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-700"}`}
-                onClick={handleUndo}
-                disabled={!canUndo || isUndoRedoOperation}
-                title={`Undo (${undoStack.length - 1} actions available)`}
-              >
-                <RotateCcw className="h-4 w-4" />
-              </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                className={`text-white ${!canRedo ? "opacity-50 cursor-not-allowed" : "hover:bg-slate-700"}`}
-                onClick={handleRedo}
-                disabled={!canRedo || isUndoRedoOperation}
-                title={`Redo (${redoStack.length} actions available)`}
-              >
-                <RotateCw className="h-4 w-4" />
-              </Button>
-            </div>
           </div>
         </div>
       </div>

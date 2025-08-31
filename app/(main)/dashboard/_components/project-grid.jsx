@@ -12,13 +12,14 @@ export function ProjectGrid({ projects }) {
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-6 p-6">
       {projects.map((project) => (
-        <ProjectCard
-          key={project._id}
-          project={project}
-          onEdit={() => handleEditProject(project._id)}
-        />
+        <div key={project._id} className="transform transition-all duration-300 hover:-translate-y-1">
+          <ProjectCard
+            project={project}
+            onEdit={() => handleEditProject(project._id)}
+          />
+        </div>
       ))}
     </div>
   );
