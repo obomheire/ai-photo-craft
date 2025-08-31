@@ -25,11 +25,11 @@ export function UpgradeModal({ isOpen, onClose, restrictedTool, reason }) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-4xl bg-slate-800 border-white/10 max-h-[90vh] overflow-y-auto">
+      <DialogContent className="sm:max-w-4xl bg-background border-border max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <div className="flex items-center gap-3">
             <Crown className="h-6 w-6 text-yellow-500" />
-            <DialogTitle className="text-2xl font-bold text-white">
+            <DialogTitle className="text-2xl font-bold text-foreground">
               Upgrade to Pro
             </DialogTitle>
           </div>
@@ -38,10 +38,10 @@ export function UpgradeModal({ isOpen, onClose, restrictedTool, reason }) {
         <div className="space-y-6">
           {/* Restriction Message */}
           {restrictedTool && (
-            <Alert className="bg-amber-500/10 border-amber-500/20">
-              <Zap className="h-5 w-5 text-amber-400" />
-              <AlertDescription className="text-amber-300/80">
-                <div className="font-semibold text-amber-400 mb-1">
+            <Alert className="bg-accent/10 border-accent/20">
+              <Zap className="h-5 w-5 text-accent" />
+              <AlertDescription className="text-accent/80">
+                <div className="font-semibold text-accent mb-1">
                   {getToolName(restrictedTool)} - Pro Feature
                 </div>
                 {reason ||
@@ -57,7 +57,7 @@ export function UpgradeModal({ isOpen, onClose, restrictedTool, reason }) {
           <Button
             variant="ghost"
             onClick={onClose}
-            className="text-white/70 hover:text-white"
+            className="text-muted-foreground hover:text-foreground"
           >
             Maybe Later
           </Button>
