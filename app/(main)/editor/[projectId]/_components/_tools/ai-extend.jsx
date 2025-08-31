@@ -144,23 +144,23 @@ export function AIExtenderControls({ project }) {
 
   // Early returns for error states
   if (!canvasEditor) {
-    return <div className="p-4 text-white/70 text-sm">Canvas not ready</div>;
+    return <div className="p-4 text-muted-foreground text-sm">Canvas not ready</div>;
   }
 
   const mainImage = getMainImage();
   if (!mainImage) {
     return (
-      <div className="p-4 text-white/70 text-sm">Please add an image first</div>
+      <div className="p-4 text-muted-foreground text-sm">Please add an image first</div>
     );
   }
 
   if (hasBackgroundRemoval()) {
     return (
-      <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4">
-        <h3 className="text-amber-400 font-medium mb-2">
+      <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
+        <h3 className="text-accent font-medium mb-2">
           Extension Not Available
         </h3>
-        <p className="text-amber-300/80 text-sm">
+        <p className="text-accent/80 text-sm">
           AI Extension cannot be used on images with removed backgrounds. Use
           extension first, then remove background.
         </p>
@@ -175,10 +175,10 @@ export function AIExtenderControls({ project }) {
     <div className="space-y-6">
       {/* Direction Selection */}
       <div>
-        <h3 className="text-sm font-medium text-white mb-3">
+        <h3 className="text-sm font-medium text-foreground mb-3">
           Select Extension Direction
         </h3>
-        <p className="text-xs text-white/70 mb-3">
+        <p className="text-xs text-muted-foreground mb-3">
           Choose one direction to extend your image
         </p>
         <div className="grid grid-cols-2 gap-3">
@@ -188,7 +188,7 @@ export function AIExtenderControls({ project }) {
               onClick={() => selectDirection(key)}
               variant={selectedDirection === key ? "default" : "outline"}
               className={`flex items-center gap-2 ${
-                selectedDirection === key ? "bg-cyan-500 hover:bg-cyan-600" : ""
+                selectedDirection === key ? "bg-primary hover:bg-primary/90" : ""
               }`}
             >
               <Icon className="h-4 w-4" />
@@ -201,8 +201,8 @@ export function AIExtenderControls({ project }) {
       {/* Extension Amount */}
       <div>
         <div className="flex justify-between items-center mb-2">
-          <label className="text-sm text-white">Extension Amount</label>
-          <span className="text-xs text-white/70">{extensionAmount}px</span>
+          <label className="text-sm text-foreground">Extension Amount</label>
+          <span className="text-xs text-muted-foreground">{extensionAmount}px</span>
         </div>
         <Slider
           value={[extensionAmount]}
@@ -217,23 +217,23 @@ export function AIExtenderControls({ project }) {
 
       {/* Dimensions Preview */}
       {selectedDirection && (
-        <div className="bg-slate-700/30 rounded-lg p-3">
-          <h4 className="text-sm font-medium text-white mb-2">
+        <div className="bg-muted/30 rounded-lg p-3">
+          <h4 className="text-sm font-medium text-foreground mb-2">
             Extension Preview
           </h4>
-          <div className="text-xs text-white/70 space-y-1">
+          <div className="text-xs text-muted-foreground space-y-1">
             <div>
               Current:{" "}
               {Math.round(currentImage.width * (currentImage.scaleX || 1))} ×{" "}
               {Math.round(currentImage.height * (currentImage.scaleY || 1))}px
             </div>
-            <div className="text-cyan-400">
+            <div className="text-primary">
               Extended: {newWidth} × {newHeight}px
             </div>
-            <div className="text-white/50">
+            <div className="text-muted-foreground">
               Canvas: {project.width} × {project.height}px (unchanged)
             </div>
-            <div className="text-cyan-300">
+            <div className="text-primary/80">
               Direction:{" "}
               {DIRECTIONS.find((d) => d.key === selectedDirection)?.label}
             </div>
@@ -253,8 +253,8 @@ export function AIExtenderControls({ project }) {
       </Button>
 
       {/* Instructions */}
-      <div className="bg-slate-700/30 rounded-lg p-3">
-        <p className="text-xs text-white/70">
+      <div className="bg-muted/30 rounded-lg p-3">
+        <p className="text-xs text-muted-foreground">
           <strong>How it works:</strong> Select one direction → Set amount →
           Apply extension. AI will intelligently fill the new area in that
           direction.

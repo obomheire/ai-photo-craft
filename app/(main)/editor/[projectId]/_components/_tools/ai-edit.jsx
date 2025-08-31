@@ -139,18 +139,18 @@ export function AIEdit({ project }) {
 
   // Early returns
   if (!canvasEditor) {
-    return <div className="p-4 text-white/70 text-sm">Canvas not ready</div>;
+    return <div className="p-4 text-muted-foreground text-sm">Canvas not ready</div>;
   }
 
   const mainImage = getMainImage();
   if (!mainImage) {
     return (
-      <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-4">
+      <div className="bg-accent/10 border border-accent/20 rounded-lg p-4">
         <div className="flex items-start gap-3">
-          <AlertTriangle className="h-5 w-5 text-amber-400 mt-0.5 flex-shrink-0" />
+          <AlertTriangle className="h-5 w-5 text-accent mt-0.5 flex-shrink-0" />
           <div>
-            <h3 className="text-amber-400 font-medium mb-1">No Image Found</h3>
-            <p className="text-amber-300/80 text-sm">
+            <h3 className="text-accent font-medium mb-1">No Image Found</h3>
+            <p className="text-accent/80 text-sm">
               Please add an image to the canvas first to use AI retouching.
             </p>
           </div>
@@ -186,7 +186,7 @@ export function AIEdit({ project }) {
 
       {/* Preset Selection */}
       <div>
-        <h3 className="text-sm font-medium text-white mb-3">
+        <h3 className="text-sm font-medium text-foreground mb-3">
           Choose Enhancement Style
         </h3>
         <div className="grid grid-cols-2 gap-3">
@@ -199,29 +199,29 @@ export function AIEdit({ project }) {
                 key={preset.key}
                 className={`relative p-4 rounded-lg border cursor-pointer transition-all ${
                   isSelected
-                    ? "border-cyan-400 bg-cyan-400/10"
-                    : "border-white/20 bg-slate-700/30 hover:border-white/40"
+                    ? "border-primary bg-primary/10"
+                    : "border-border bg-muted/30 hover:border-border"
                 }`}
                 onClick={() => setSelectedPreset(preset.key)}
               >
                 <div className="flex flex-col items-center text-center">
-                  <Icon className="h-8 w-8 text-cyan-400 mb-2" />
+                  <Icon className="h-8 w-8 text-primary mb-2" />
                   <div className="flex items-center gap-2 mb-1">
-                    <h4 className="text-white font-medium text-sm">
+                    <h4 className="text-foreground font-medium text-sm">
                       {preset.label}
                     </h4>
                     {preset.recommended && (
-                      <span className="px-1.5 py-0.5 bg-cyan-500 text-white text-xs rounded-full">
+                      <span className="px-1.5 py-0.5 bg-primary text-primary-foreground text-xs rounded-full">
                         ★
                       </span>
                     )}
                   </div>
-                  <p className="text-white/70 text-xs">{preset.description}</p>
+                  <p className="text-muted-foreground text-xs">{preset.description}</p>
                 </div>
 
                 {isSelected && (
                   <div className="absolute top-2 right-2">
-                    <div className="w-3 h-3 bg-cyan-400 rounded-full"></div>
+                    <div className="w-3 h-3 bg-primary rounded-full"></div>
                   </div>
                 )}
               </div>
@@ -237,12 +237,12 @@ export function AIEdit({ project }) {
       </Button>
 
       {/* Information */}
-      <div className="bg-slate-700/30 rounded-lg p-4">
-        <h4 className="text-sm font-medium text-white mb-2 flex items-center gap-2">
+      <div className="bg-muted/30 rounded-lg p-4">
+        <h4 className="text-sm font-medium text-foreground mb-2 flex items-center gap-2">
           <Info className="h-4 w-4" />
           How AI Retouch Works
         </h4>
-        <div className="space-y-2 text-xs text-white/70">
+        <div className="space-y-2 text-xs text-muted-foreground">
           <p>
             • <strong>AI Retouch:</strong> AI analyzes and applies optimal
             improvements
