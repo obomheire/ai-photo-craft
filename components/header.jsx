@@ -41,19 +41,19 @@ export default function Header() {
               href="#features"
               className="text-white font-medium transition-all duration-300 hover:text-cyan-400 cursor-pointer"
             >
-              Features
+              Explore
             </Link>
             <Link
               href="#pricing"
               className="text-white font-medium transition-all duration-300 hover:text-cyan-400 cursor-pointer"
             >
-              Pricing
+              Plans
             </Link>
             <Link
               href="#contact"
               className="text-white font-medium transition-all duration-300 hover:text-cyan-400 cursor-pointer"
             >
-              Contact
+              Get in Touch
             </Link>
           </div>
         )}
@@ -64,7 +64,7 @@ export default function Header() {
             <Link href="/dashboard">
               <Button variant="glass" className="hidden sm:flex">
                 <LayoutDashboard className="h-4 w-4" />
-                <span className="hidden md:flex">Dashboard</span>
+                <span className="hidden md:flex">Workspace</span>
               </Button>
             </Link>
 
