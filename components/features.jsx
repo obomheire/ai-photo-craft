@@ -69,11 +69,10 @@ const FeaturesSection = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent mb-6">
-            Powerful AI Features
+            Advanced AI Capabilities
           </h2>
           <p className="text-xl text-gray-300 max-w-3xl mx-auto">
-            Everything you need to create, edit, and enhance images with
-            professional-grade tools powered by cutting-edge AI technology.
+            All-in-one AI-powered toolkit to create, edit, and elevate your images with professional precision and next-gen technology.
           </p>
         </div>
 

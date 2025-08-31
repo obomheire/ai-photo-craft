@@ -125,14 +125,13 @@ const PricingSection = () => {
       <div className="max-w-4xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="text-5xl font-bold text-white mb-6">
-            Simple{" "}
+            Transparent{" "}
             <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">
               Pricing
             </span>
           </h2>
           <p className="text-xl text-gray-300">
-            Start free and upgrade when you need more power. No hidden fees,
-            cancel anytime.
+            Get started free and scale up only when you need more. No hidden costs, no commitments; cancel anytime.
           </p>
         </div>
 

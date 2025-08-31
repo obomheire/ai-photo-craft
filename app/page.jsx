@@ -25,26 +25,24 @@ const HeroSection = () => {
         >
           <h1 className="text-6xl md:text-9xl font-black mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400 bg-clip-text text-transparent animate-pulse">
-              Create
+              Design
             </span>
             <br />
-            <span className="text-white">Without Limits</span>
+            <span className="text-white">Beyond Boundaries</span>
           </h1>
 
           <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Professional image editing powered by AI. Crop, resize, adjust
-            colors, remove backgrounds, and enhance your images with
-            cutting-edge technology.
+            Next-gen AI image editing at your fingertips — crop, resize, refine colors, erase backgrounds, and transform your photos with smart, powerful technology.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-12">
             <Link href="/dashboard">
               <Button variant="primary" size="xl">
-                Start Creating
+                Ignite Your Creativity
               </Button>
             </Link>
             <Button variant="glass" size="xl">
-              Watch Demo
+              Live Preview
             </Button>
           </div>
         </div>
@@ -91,7 +89,7 @@ const HeroSection = () => {
 
               <div className="flex items-center justify-center">
                 <div className="w-full h-48 bg-gradient-to-r from-blue-500 via-purple-500 to-cyan-500 rounded-2xl shadow-2xl shadow-blue-500/50 flex items-center justify-center">
-                  <div className="text-white font-bold">Your Canvas</div>
+                  <div className="text-white font-bold">Your Workspace</div>
                 </div>
               </div>
             </div>
@@ -115,18 +113,17 @@ const App = () => {
       <section className="py-20 text-center">
         <div className="max-w-4xl mx-auto px-6">
           <h2 className="text-5xl font-bold mb-6">
-            Ready to{" "}
+            Let’s Turn{" "}
             <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-              Create Something Amazing?
+              Your Vision Into Reality
             </span>
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Join thousands of creators who are already using AI to transform
-            their images and bring their vision to life.
+            Be part of thousands of creators harnessing AI to transform their images and turn imagination into reality.
           </p>
           <Link href="/dashboard">
             <Button variant="primary" size="xl">
-              🌟 Start Creating Now
+              🌟 Unleash Your Creativity
             </Button>
           </Link>
         </div>
