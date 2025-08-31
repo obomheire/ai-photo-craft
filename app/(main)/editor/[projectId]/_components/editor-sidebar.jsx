@@ -73,12 +73,12 @@ export function EditorSidebar({ project }) {
       {/* Sidebar Header */}
       <div className="p-4 border-b">
         <div className="flex items-center gap-3">
-          <Icon className="h-5 w-5 text-white" />
-          <h2 className="text-lg font-semibold text-white">
+          <Icon className="h-5 w-5 text-foreground" />
+          <h2 className="text-lg font-semibold text-foreground">
             {toolConfig.title}
           </h2>
         </div>
-        <p className="text-sm text-white mt-1">{toolConfig.description}</p>
+        <p className="text-sm text-muted-foreground mt-1">{toolConfig.description}</p>
       </div>
 
       {/* Sidebar Content */}
@@ -106,6 +106,6 @@ function renderToolContent(activeTool, project) {
     case "ai_edit":
       return <AIEdit project={project} />;
     default:
-      return <div className="text-white">Select a tool to get started</div>;
+      return <div className="text-foreground">Select a tool to get started</div>;
   }
 }
