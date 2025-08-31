@@ -205,7 +205,7 @@ export function BackgroundControls({ project }) {
   if (!canvasEditor) {
     return (
       <div className="p-4">
-        <p className="text-white/70 text-sm">Canvas not ready</p>
+        <p className="text-muted-foreground text-sm">Canvas not ready</p>
       </div>
     );
   }
@@ -213,12 +213,12 @@ export function BackgroundControls({ project }) {
   return (
     <div className="space-y-6 relative h-full">
       {/* AI Background Removal Button - Outside of tabs */}
-      <div className="space-y-4 pb-4 border-b border-white/10">
+      <div className="space-y-4 pb-4 border-b border-border">
         <div>
-          <h3 className="text-sm font-medium text-white mb-2">
+          <h3 className="text-sm font-medium text-foreground mb-2">
             AI Background Removal
           </h3>
-          <p className="text-xs text-white/70 mb-4">
+          <p className="text-xs text-muted-foreground mb-4">
             Automatically remove the background from your image using AI
           </p>
         </div>
@@ -234,7 +234,7 @@ export function BackgroundControls({ project }) {
         </Button>
 
         {!getMainImage() && (
-          <p className="text-xs text-amber-400">
+          <p className="text-xs text-accent">
             Please add an image to the canvas first to remove its background
           </p>
         )}
@@ -242,17 +242,17 @@ export function BackgroundControls({ project }) {
 
       {/* Shadcn UI Tabs */}
       <Tabs defaultValue="color" className="w-full">
-        <TabsList className="grid w-full grid-cols-2 bg-slate-700/50">
+        <TabsList className="grid w-full grid-cols-2 bg-muted/50">
           <TabsTrigger
             value="color"
-            className="data-[state=active]:bg-cyan-500 data-[state=active]:text-white"
+            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
           >
             <Palette className="h-4 w-4 mr-2" />
             Color
           </TabsTrigger>
           <TabsTrigger
             value="image"
-            className="data-[state=active]:bg-cyan-500 data-[state=active]:text-white"
+            className="data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
           >
             <ImageIcon className="h-4 w-4 mr-2" />
             Image
@@ -262,10 +262,10 @@ export function BackgroundControls({ project }) {
         {/* Color Background Tab */}
         <TabsContent value="color" className="space-y-4 mt-6">
           <div>
-            <h3 className="text-sm font-medium text-white mb-2">
+            <h3 className="text-sm font-medium text-foreground mb-2">
               Solid Color Background
             </h3>
-            <p className="text-xs text-white/70 mb-4">
+            <p className="text-xs text-muted-foreground mb-4">
               Choose a solid color for your canvas background
             </p>
           </div>
@@ -282,10 +282,10 @@ export function BackgroundControls({ project }) {
                 value={backgroundColor}
                 onChange={(e) => setBackgroundColor(e.target.value)}
                 placeholder="#ffffff"
-                className="flex-1 bg-slate-700 border-white/20 text-white"
+                className="flex-1 bg-muted border-border text-foreground"
               />
               <div
-                className="w-10 h-10 rounded border border-white/20"
+                className="w-10 h-10 rounded border border-border"
                 style={{ backgroundColor }}
               />
             </div>
@@ -304,10 +304,10 @@ export function BackgroundControls({ project }) {
         {/* Image Background Tab */}
         <TabsContent value="image" className="space-y-4 mt-6">
           <div>
-            <h3 className="text-sm font-medium text-white mb-2">
+            <h3 className="text-sm font-medium text-foreground mb-2">
               Image Background
             </h3>
-            <p className="text-xs text-white/70 mb-4">
+            <p className="text-xs text-muted-foreground mb-4">
               Search and use high-quality images from Unsplash
             </p>
           </div>
@@ -319,7 +319,7 @@ export function BackgroundControls({ project }) {
               onChange={(e) => setSearchQuery(e.target.value)}
               onKeyPress={handleSearchKeyPress}
               placeholder="Search for backgrounds..."
-              className="flex-1 bg-slate-700 border-white/20 text-white"
+              className="flex-1 bg-muted border-border text-foreground"
             />
             <Button
               onClick={searchUnsplashImages}
@@ -337,14 +337,14 @@ export function BackgroundControls({ project }) {
           {/* Search Results */}
           {unsplashImages?.length > 0 && (
             <div className="space-y-3">
-              <h4 className="text-sm font-medium text-white">
+              <h4 className="text-sm font-medium text-foreground">
                 Search Results ({unsplashImages?.length})
               </h4>
               <div className="grid grid-cols-2 gap-3 max-h-96 overflow-y-auto">
                 {unsplashImages.map((image) => (
                   <div
                     key={image.id}
-                    className="relative group cursor-pointer rounded-lg overflow-hidden border border-white/10 hover:border-cyan-400 transition-colors"
+                    className="relative group cursor-pointer rounded-lg overflow-hidden border border-border hover:border-primary transition-colors"
                     onClick={() =>
                       handleImageBackground(image.urls.regular, image.id)
                     }
@@ -357,19 +357,19 @@ export function BackgroundControls({ project }) {
 
                     {/* Loading overlay */}
                     {selectedImageId === image.id && (
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <Loader2 className="h-5 w-5 animate-spin text-white" />
+                      <div className="absolute inset-0 bg-background/50 flex items-center justify-center">
+                        <Loader2 className="h-5 w-5 animate-spin text-foreground" />
                       </div>
                     )}
 
                     {/* Hover overlay */}
-                    <div className="absolute inset-0 bg-black/0 group-hover:bg-black/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
-                      <Download className="h-5 w-5 text-white" />
+                    <div className="absolute inset-0 bg-transparent group-hover:bg-background/30 transition-colors flex items-center justify-center opacity-0 group-hover:opacity-100">
+                      <Download className="h-5 w-5 text-foreground" />
                     </div>
 
                     {/* Attribution */}
-                    <div className="absolute bottom-0 left-0 right-0 bg-black/70 p-1">
-                      <p className="text-xs text-white/80 truncate">
+                    <div className="absolute bottom-0 left-0 right-0 bg-background/70 p-1">
+                      <p className="text-xs text-muted-foreground truncate">
                         by {image.user.name}
                       </p>
                     </div>
@@ -382,11 +382,11 @@ export function BackgroundControls({ project }) {
           {/* Empty state */}
           {!isSearching && unsplashImages?.length === 0 && searchQuery && (
             <div className="text-center py-8">
-              <ImageIcon className="h-12 w-12 text-white/30 mx-auto mb-3" />
-              <p className="text-white/70 text-sm">
+              <ImageIcon className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+              <p className="text-muted-foreground text-sm">
                 No images found for "{searchQuery}"
               </p>
-              <p className="text-white/50 text-xs">
+              <p className="text-muted-foreground text-xs">
                 Try a different search term
               </p>
             </div>
@@ -395,18 +395,18 @@ export function BackgroundControls({ project }) {
           {/* Initial state */}
           {!searchQuery && unsplashImages?.length === 0 && (
             <div className="text-center py-8">
-              <Search className="h-12 w-12 text-white/30 mx-auto mb-3" />
-              <p className="text-white/70 text-sm">
+              <Search className="h-12 w-12 text-muted-foreground mx-auto mb-3" />
+              <p className="text-muted-foreground text-sm">
                 Search for background images
               </p>
-              <p className="text-white/50 text-xs">Powered by Unsplash</p>
+              <p className="text-muted-foreground text-xs">Powered by Unsplash</p>
             </div>
           )}
 
           {/* API key warning */}
           {!UNSPLASH_ACCESS_KEY && (
-            <div className="bg-amber-500/10 border border-amber-500/20 rounded-lg p-3">
-              <p className="text-amber-400 text-xs">
+            <div className="bg-accent/10 border border-accent/20 rounded-lg p-3">
+              <p className="text-accent text-xs">
                 Unsplash API key not configured. Please add
                 NEXT_PUBLIC_UNSPLASH_ACCESS_KEY to your environment variables.
               </p>
@@ -416,7 +416,7 @@ export function BackgroundControls({ project }) {
       </Tabs>
 
       {/* Clear Canvas Background Button - At the bottom */}
-      <div className="pt-4 border-t border-white/10 bottom-0 w-full">
+      <div className="pt-4 border-t border-border bottom-0 w-full">
         <Button
           onClick={handleRemoveBackground}
           className="w-full"
