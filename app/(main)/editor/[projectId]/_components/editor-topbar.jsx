@@ -583,7 +583,7 @@ export function EditorTopBar({ project }) {
 
         {/* Tools Row */}
         <div className="px-4 pb-4">
-          <div className="flex items-center gap-2 bg-muted/50 p-1 rounded-lg">
+          <div className="flex items-center gap-2 bg-muted/50 p-1.5 rounded-lg shadow-sm">
             {TOOLS.map((tool) => {
               const Icon = tool.icon;
               const isActive = activeTool === tool.id;
@@ -597,8 +597,8 @@ export function EditorTopBar({ project }) {
                   onClick={() => handleToolChange(tool.id)}
                   className={`gap-2 relative rounded-md transition-all duration-200 ${
                     isActive
-                      ? "bg-primary text-primary-foreground shadow-sm"
-                      : "text-foreground hover:text-foreground/80 hover:bg-primary/10"
+                      ? "bg-primary text-primary-foreground shadow-sm ring-1 ring-primary/20"
+                      : "text-foreground hover:text-foreground/90 hover:bg-primary/5 hover:ring-1 hover:ring-primary/10"
                   } ${!hasToolAccess ? "opacity-60" : ""}`}
                 >
                   <Icon className="h-4 w-4" />
