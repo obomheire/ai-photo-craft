@@ -23,10 +23,10 @@ export default function DashboardPage() {
         <div className="flex items-center justify-between mb-8">
           <div>
             <h1 className="text-4xl font-bold text-white mb-2">
-              Your Projects
+              Projects
             </h1>
             <p className="text-white/70">
-              Create and manage your AI-powered image designs
+              Design and organize stunning AI-generated images with ease.
             </p>
           </div>
 
@@ -71,12 +71,11 @@ function EmptyState({ onCreateProject }) {
       </div>
 
       <h3 className="text-2xl font-semibold text-white mb-3">
-        Create Your First Project
+        Get Started with Your First Project
       </h3>
 
       <p className="text-white/70 mb-8 max-w-md">
-        Upload an image to start editing with our powerful AI tools, or create a
-        blank canvas to design from scratch.
+        Bring your ideas to life — upload an image for AI-powered editing, or create magic from a blank canvas.
       </p>
 
       <Button

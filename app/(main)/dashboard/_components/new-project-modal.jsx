@@ -134,7 +134,7 @@ export function NewProjectModal({ isOpen, onClose }) {
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
                 <DialogTitle className="text-2xl font-bold text-white">
-                  Create New Project
+                  Launch New Project
                 </DialogTitle>
                 {isFree && (
                   <Badge
