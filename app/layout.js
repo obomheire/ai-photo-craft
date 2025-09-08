@@ -45,11 +45,6 @@ export default function RootLayout({ children }) {
             </ConvexClientProvider>
           </ClerkProvider>
         </ThemeProvider>
-        {/* <div className="">
-        <footer className="text-center text-sm text-gray-500">
-          &copy; {new Date().getFullYear()} aiPhotoCraft. All rights reserved.
-        </footer>
-        </div> */}
         <div className="bg-gray-900 py-6 mt-12">
           <footer className="text-center text-sm text-gray-400">
             <p className="mb-2">
