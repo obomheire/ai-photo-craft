@@ -11,7 +11,7 @@ import { Toaster } from "sonner";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Pixxel",
+  title: "aiPhotoCraft",
   description: " AI powered image editing",
 };
 
@@ -45,6 +45,20 @@ export default function RootLayout({ children }) {
             </ConvexClientProvider>
           </ClerkProvider>
         </ThemeProvider>
+        {/* <div className="">
+        <footer className="text-center text-sm text-gray-500">
+          &copy; {new Date().getFullYear()} aiPhotoCraft. All rights reserved.
+        </footer>
+        </div> */}
+        <div className="bg-gray-900 py-6 mt-12">
+          <footer className="text-center text-sm text-gray-400">
+            <p className="mb-2">
+              &copy; {new Date().getFullYear()}{" "}
+              <span className="font-semibold text-white">aiPhotoCraft</span>.
+              All rights reserved.
+            </p>
+          </footer>
+        </div>
       </body>
     </html>
   );

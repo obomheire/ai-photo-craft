@@ -160,8 +160,8 @@ export function NewProjectModal({ isOpen, onClose }) {
                       : "Project Limit Reached"}
                   </div>
                   {currentProjectCount === 2
-                    ? "This will be your last free project. Upgrade to Pixxel Pro for unlimited projects."
-                    : "Free plan is limited to 3 projects. Upgrade to Pixxel Pro to create more projects."}
+                    ? "This will be your last free project. Upgrade to aiPhotoCraft Pro for unlimited projects."
+                    : "Free plan is limited to 3 projects. Upgrade to aiPhotoCraft Pro to create more projects."}
                 </AlertDescription>
               </Alert>
             )}

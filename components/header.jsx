@@ -28,7 +28,7 @@ export default function Header() {
         <Link href="/" className="mr-10 md:mr-20">
           <Image
             src="/design.jpeg"
-            alt="Pixxel Logo"
+            alt="aiPhotoCraft Logo"
             className="min-w-24 object-cover"
             width={96}
             height={24}
